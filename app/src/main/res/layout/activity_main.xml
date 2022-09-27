@@ -1,19 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AuthenticationActivity">
 
     <TextView
+        android:id="@+id/enterPhoneNumberText"
+        style="@style/primaryTextBoldLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_85sdp"
+        android:text="@string/enter_your_phone_number"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/selectCountryCodeText"
+        style="@style/primaryTextRegularSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="@string/please_confirm_your_country_code_and_enter_your_phone_number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/enterPhoneNumberText"
+        app:layout_constraintStart_toStartOf="@+id/enterPhoneNumberText"
+        app:layout_constraintTop_toBottomOf="@id/enterPhoneNumberText" />
+
+    <LinearLayout
+        android:id="@+id/userAuthPhoneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:background="@drawable/user_auth_edit_text_layout_style"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:paddingVertical="@dimen/_3sdp"
+        app:layout_constraintTop_toBottomOf="@+id/selectCountryCodeText"
+        tools:layout_editor_absoluteX="26dp">
+
+        <ImageView
+            android:id="@+id/authSelectedCountry"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ca"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/userAuthCountryCode"
+            style="@style/primaryTextRegularMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/countryCodePlaceHolder" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:background="@color/colorSecondary" />
+
+        <EditText
+            android:id="@+id/userAuthPhone"
+            style="@style/primaryTextRegularMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:textColorHint="@color/lightColor" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/buttonBoldStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_37sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:text="@string/send_code"
+        app:layout_constraintEnd_toEndOf="@+id/userAuthPhoneLayout"
+        app:layout_constraintStart_toStartOf="@+id/userAuthPhoneLayout"
+        app:layout_constraintTop_toBottomOf="@+id/userAuthPhoneLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

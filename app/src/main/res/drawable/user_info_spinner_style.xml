@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item>
+        <shape>
+            <corners android:radius="@dimen/_14sdp" />
+            <solid android:color="#F0F2FC" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:end="@dimen/_5sdp"
+        android:gravity="center|right"
+        tools:targetApi="m" />
+</layer-list>

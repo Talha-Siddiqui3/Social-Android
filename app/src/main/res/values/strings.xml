@@ -6,4 +6,10 @@
     <string name="alertMessage">Do you wish to continue?</string>
     <string name="errorMessage">Something went wrong</string>
     <string name="successMessage">Your action is completed</string>
+    <string name="enter_your_phone_number">Enter Your Phone Number</string>
+    <string name="please_confirm_your_country_code_and_enter_your_phone_number">Please confirm your country code and enter your phone number</string>
+    <string name="countryCodePlaceHolder">+1</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_code">Send Code</string>
+    <string name="search">Search</string>
 </resources>

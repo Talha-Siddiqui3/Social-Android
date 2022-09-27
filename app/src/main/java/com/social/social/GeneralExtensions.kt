@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import android.widget.Toast
 
@@ -43,6 +44,17 @@ fun Activity.printLog(text: Any?) {
     if (BuildConfig.DEBUG) {
         Log.e(this::class.java.simpleName, if (text !is String) text.toString() else text)
     }
+}
+
+fun View.showKeyboard() {
+    this.requestFocus()
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+}
+
+fun View.hideKeyboard() {
+    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
 //fun Activity.changeStatusBarColor(isLight: Boolean = true) {

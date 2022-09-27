@@ -11,4 +11,6 @@
     <color name="primaryTextColor">#F7F7FC</color>
     <color name="secondaryTextColor">#0F1828</color>
 
+    <color name="lightColor">#6A6A6A</color>
+
 </resources>
