@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Social</string>
+    <string name="error">ERROR!</string>
+    <string name="alert">ALERT!</string>
+    <string name="success">SUCCESS!</string>
+    <string name="alertMessage">Do you wish to continue?</string>
+    <string name="errorMessage">Something went wrong</string>
+    <string name="successMessage">Your action is completed</string>
+</resources>
