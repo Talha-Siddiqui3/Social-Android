@@ -3,8 +3,12 @@ package com.social.social
 
 import com.social.social.misc.AppSettings
 import com.social.social.mockRepositories.AuthenticationMockRepository
+import com.social.social.mockRepositories.AuthenticationVerifyMockRepository
 import com.social.social.repositories.AuthenticationRepository
+import com.social.social.repositories.AuthenticationVerifyRepository
 import com.social.social.repositoriesInterfaces.AuthenticationRepositoryInterface
+import com.social.social.repositoriesInterfaces.AuthenticationVerifyRepositoryInterface
+import com.social.social.viewModelFactoryClasses.AuthenticationVerifyViewModelFactoryClass
 import com.social.social.viewModelFactoryClasses.AuthenticationViewModelFactoryClass
 
 object DependencyInjectorUtility {
@@ -14,11 +18,11 @@ object DependencyInjectorUtility {
         return AuthenticationViewModelFactoryClass(authRepository)
     }
 
-//    fun getAuthenticationVerifyViewModelFactory(): AuthenticationVerifyViewModelFactoryClass {
-//        val authRepository: AuthenticationVerifyRepositoryInterface =
-//            if (AppSettings.isLiveMode) AuthenticationVerifyRepository() else AuthenticationVerifyMockRepository()
-//        return AuthenticationVerifyViewModelFactoryClass(authRepository)
-//    }
+    fun getAuthenticationVerifyViewModelFactory(): AuthenticationVerifyViewModelFactoryClass {
+        val authRepository: AuthenticationVerifyRepositoryInterface =
+            if (AppSettings.isLiveMode) AuthenticationVerifyRepository() else AuthenticationVerifyMockRepository()
+        return AuthenticationVerifyViewModelFactoryClass(authRepository)
+    }
 
 
 }

@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/user_auth_edit_text_layout_style.xml" value="0.281" />
         <entry key="app/src/main/res/drawable/user_info_border_style.xml" value="0.281" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_authentication_verify.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_authentication_verify.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/country_picker_dialog_layout.xml" value="0.2765625" />
         <entry key="app/src/main/res/layout/country_picker_list_item.xml" value="0.171875" />

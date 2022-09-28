@@ -10,6 +10,7 @@ import com.social.social.DependencyInjectorUtility
 import com.social.social.R
 import com.social.social.customViews.CountryPickerDialog
 import com.social.social.dataObjects.FieldObject
+import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
 import com.social.social.misc.ActivityIntentConstants
 import com.social.social.misc.MyBaseClass
@@ -42,6 +43,7 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
         setOnClickListeners()
         initAuthenticationFieldsMap()
         addOnValidationCompleteObserver()
+        addOnServerResponseObserver()
 
 
     }
@@ -53,10 +55,8 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
     private fun addOnValidationCompleteObserver() {
         viewModel.getValidationLiveData().observe(this) {
             if (it is ResourceValidation.Success) {
-                "Validated".printLog("YES")
-                //startPhoneNumberVerification(getPhoneNumber())
+                viewModel.loginUsingPhone(getPhoneNumber())
             } else {
-                "Validated".printLog("NO")
                 //Validation was not successful due to at least one field having incorrect data
                 //We will now display errors on all the fields having incorrect data
                 for (fieldObject in it.data) {
@@ -64,6 +64,27 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
                         authenticationFieldsToViewsMap[fieldObject.fieldEnum]?.error =
                             fieldObject.error //using our hashmap to get our view from the enum
                     }
+                }
+            }
+        }
+    }
+
+    private fun addOnServerResponseObserver() {
+        viewModel.getOnServerResponseLiveData().observe(this) {
+            when (it) {
+                is Resource.Success -> {
+                    hideLoading()
+                    startActivity(Intent(this, AuthenticationVerifyActivity::class.java).apply {
+                        putExtra(ActivityIntentConstants.userPhoneNumber, getPhoneNumber())
+                    })
+                }
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    showCustomError(it.message!!)
+                    "error".printLog(it.message)
                 }
             }
         }
@@ -113,6 +134,3 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
     }
 }
 
-//startActivity(Intent(this, AuthenticationVerifyActivity::class.java).apply {
-//    putExtra(ActivityIntentConstants.userPhoneNumber, getPhoneNumber())
-//})

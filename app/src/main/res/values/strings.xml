@@ -13,6 +13,7 @@
     <string name="send_code">Send Code</string>
     <string name="search">Search</string>
     <string name="enter_code">Enter Code</string>
-    <string name="we_have_sent_you_an_sms_with_the_code_to">We have sent you an SMS with the code to</string>
+    <string name="we_have_sent_you_an_sms_with_the_code_to">We have sent you an SMS with the code to </string>
     <string name="resend_code">Resend Code</string>
+    <string name="verify">Verify</string>
 </resources>

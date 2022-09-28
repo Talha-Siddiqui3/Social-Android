@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AuthenticationVerifyActivity">
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/selectCountryCodeText"
+        android:id="@+id/sentCodeOnNumberTextView"
         style="@style/primaryTextRegularSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,10 +37,10 @@
         android:id="@+id/authVerifyOtpLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_35sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCountryCodeText">
+        android:layout_marginTop="@dimen/_35sdp"
+        app:layout_constraintTop_toBottomOf="@+id/sentCodeOnNumberTextView">
 
         <EditText
             android:id="@+id/authVerifyOtpEditText1"
@@ -70,17 +71,17 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/resendTextView"
-        style="@style/primaryTextMediumMedium"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/verifyButton"
+        style="@style/buttonBoldStyle"
+        android:layout_width="0dp"
         android:layout_height="@dimen/_37sdp"
         android:layout_marginTop="@dimen/_50sdp"
-        android:text="@string/resend_code"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/verify"
+        app:layout_constraintEnd_toEndOf="@+id/authVerifyOtpLayout"
+        app:layout_constraintStart_toStartOf="@+id/authVerifyOtpLayout"
+        android:layout_marginStart="@dimen/_minus10sdp"
+        android:layout_marginEnd="@dimen/_minus10sdp"
         app:layout_constraintTop_toBottomOf="@+id/authVerifyOtpLayout" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
