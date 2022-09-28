@@ -126,7 +126,7 @@ class CountryPickerDialog(
         UIUtil.hideKeyboard(context as Activity)
         if (!countriesDataLoaded) {
             setupRecyclerView(data)
-            countryPickerRecyclerView.scrollToPosition(36)
+            countryPickerRecyclerView.scrollToPosition(36403)
             countriesDataLoaded = true
         }
         if (countriesDataLoaded) {

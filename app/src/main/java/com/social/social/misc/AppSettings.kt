@@ -1,5 +1,5 @@
 package com.social.social.misc
 
 object AppSettings {
-    val isLiveMode = true
+    const val isLiveMode = false
 }

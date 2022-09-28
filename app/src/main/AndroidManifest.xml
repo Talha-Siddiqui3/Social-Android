@@ -14,6 +14,10 @@
         android:theme="@style/Theme.Social"
         tools:targetApi="32">
         <activity
+            android:name=".activities.AuthenticationVerifyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible"/>
+        <activity
             android:name=".activities.AuthenticationActivity"
             android:exported="true"
             android:windowSoftInputMode="stateVisible">

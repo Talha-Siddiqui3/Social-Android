@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AuthenticationVerifyActivity">
+
+    <TextView
+        android:id="@+id/enterPhoneNumberText"
+        style="@style/primaryTextBoldLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_85sdp"
+        android:text="@string/enter_code"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/selectCountryCodeText"
+        style="@style/primaryTextRegularSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/_60sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="@string/we_have_sent_you_an_sms_with_the_code_to"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enterPhoneNumberText" />
+
+    <LinearLayout
+        android:id="@+id/authVerifyOtpLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_35sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectCountryCodeText">
+
+        <EditText
+            android:id="@+id/authVerifyOtpEditText1"
+            style="@style/verify_otp_editText_style"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/authVerifyOtpEditText2"
+            style="@style/verify_otp_editText_style"
+            android:layout_marginEnd="@dimen/_20sdp"
+            tools:ignore="Autofill,LabelFor" />
+
+        <EditText
+            android:id="@+id/authVerifyOtpEditText3"
+            style="@style/verify_otp_editText_style"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/authVerifyOtpEditText4"
+            style="@style/verify_otp_editText_style"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resendTextView"
+        style="@style/primaryTextMediumMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_37sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:text="@string/resend_code"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authVerifyOtpLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
