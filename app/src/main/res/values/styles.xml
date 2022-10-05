@@ -53,6 +53,12 @@
         <item name="android:fontFamily">@font/mulish_bold</item>
     </style>
 
+    <style name="primaryTextBoldExtraLarge" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:fontFamily">@font/mulish_bold</item>
+    </style>
+
     <style name="primaryTextBoldMedium" parent="android:Widget.TextView">
         <item name="android:textColor">@color/primaryTextColor</item>
         <item name="android:textSize">@dimen/_12ssp</item>
@@ -68,7 +74,7 @@
         <item name="android:layout_height">@dimen/_35sdp</item>
     </style>
 
-    <style name="buttonBoldStyle" parent="primaryTextBoldMedium">
+    <style name="buttonBoldStyle" parent="primaryTextMediumMedium">
         <item name="android:background">@drawable/default_button_selector</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/primaryTextColor</item>

@@ -16,4 +16,7 @@
     <string name="we_have_sent_you_an_sms_with_the_code_to">We have sent you an SMS with the code to </string>
     <string name="resend_code">Resend Code</string>
     <string name="verify">Verify</string>
+    <string name="social">Social</string>
+    <string name="first_name_required">First Name (Required)</string>
+    <string name="last_name_optional">Last Name (Optional)</string>
 </resources>

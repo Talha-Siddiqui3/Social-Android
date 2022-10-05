@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@android:color/transparent"
+    android:id="@+id/rootScrollView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".activities.UserInfoActivity"
+        android:paddingBottom="@dimen/_50sdp">
+
+        <TextView
+            android:id="@+id/profileTextView"
+            style="@style/primaryTextBoldExtraLarge"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_height="wrap_content"
+            android:text="Your Profile"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/_68sdp"
+            android:layout_height="@dimen/_68sdp"
+            android:src="@drawable/avatar"
+            app:layout_constraintTop_toBottomOf="@id/profileTextView"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/addImageButton"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:src="@drawable/add_image_icon"
+            android:layout_marginBottom="@dimen/_minus4sdp"
+            android:layout_marginEnd="@dimen/_minus2sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar"
+            app:layout_constraintEnd_toEndOf="@+id/avatar" />
+
+
+        <EditText
+            android:id="@+id/firstNameEditText"
+            style="@style/primaryTextRegularMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/user_auth_edit_text_layout_style"
+            android:ems="10"
+            android:hint="@string/first_name_required"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            android:textColorHint="@color/lightColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+        <EditText
+            android:id="@+id/lastNameEditText"
+            style="@style/primaryTextRegularMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/user_auth_edit_text_layout_style"
+            android:ems="10"
+            android:hint="@string/last_name_optional"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            android:textColorHint="@color/lightColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameEditText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/saveButton"
+            style="@style/buttonBoldStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="@+id/lastNameEditText"
+            app:layout_constraintStart_toStartOf="@+id/lastNameEditText"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameEditText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+

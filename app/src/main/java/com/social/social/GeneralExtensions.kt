@@ -3,7 +3,9 @@
 package com.social.social
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -57,32 +59,6 @@ fun View.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
-//fun Activity.changeStatusBarColor(isLight: Boolean = true) {
-//    if (isLight) {
-//        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-//            Configuration.UI_MODE_NIGHT_NO -> {
-//                Log.e("UI_MODE_NIGHT_NO", "Light")
-//                window.decorView.systemUiVisibility =
-//                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//            }
-//            Configuration.UI_MODE_NIGHT_YES -> {
-//                Log.e("UI_MODE_NIGHT_YES", "Dark")
-//                window.decorView.systemUiVisibility =
-//                    window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-//            }
-//        }
-//        window.statusBarColor = ContextCompat.getColor(
-//            this,
-//            R.color.backgroundColor
-//        ) // set status background white
-//    } else {
-//        window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
-//        val decorView: View = window.decorView //set status background black
-//        decorView.systemUiVisibility =
-//            decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv() //set status text  light
-//    }
-//}
-
 fun Activity.pxToDp(px: Float): Float {
     return px / this.resources.displayMetrics.density
 }
@@ -102,3 +78,50 @@ fun ScrollView.scrollToBottom() {
     smoothScrollTo(0, delta)
 //    smoothScrollBy(0, delta)
 }
+
+fun Activity.getSharedPrefBoolean(key: String): Boolean {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    return preferences?.getBoolean(key, false) ?: false
+}
+
+fun Activity.setSharedPrefBoolean(key: String, value: Boolean) {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor? = preferences?.edit()
+    editor?.putBoolean(key, value)
+    editor?.apply()
+}
+
+
+
+fun Activity.getSharedPrefString(key: String): String? {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    return preferences?.getString(key, null)
+}
+
+fun Activity.setSharedPrefString(key: String, value: String) {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor? = preferences?.edit()
+    editor?.putString(key, value)
+    editor?.apply()
+}
+
+fun Application.getSharedPrefString(key: String): String? {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    return preferences?.getString(key, null)
+}
+
+fun Application.setSharedPrefString(key: String, value: String) {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor? = preferences?.edit()
+    editor?.putString(key, value)
+    editor?.apply()
+}
+
+
+

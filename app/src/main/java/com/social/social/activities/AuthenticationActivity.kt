@@ -15,6 +15,7 @@ import com.social.social.helper.ResourceValidation
 import com.social.social.misc.ActivityIntentConstants
 import com.social.social.misc.MyBaseClass
 import com.social.social.printLog
+import com.social.social.services.AuthService
 import com.social.social.showKeyboard
 import com.social.social.viewModels.AuthenticationViewModel
 import kotlinx.android.synthetic.main.activity_authentication.*
@@ -44,6 +45,7 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
         initAuthenticationFieldsMap()
         addOnValidationCompleteObserver()
         addOnServerResponseObserver()
+        "accessToken".printLog(AuthService.getAccessToken())
 
 
     }
@@ -83,7 +85,7 @@ class AuthenticationActivity : MyBaseClass(), View.OnClickListener {
                 }
                 is Resource.Error -> {
                     hideLoading()
-                    showCustomError(it.message!!)
+                    it.message?.let { showCustomError(it) } ?: run { showUnknownError() }
                     "error".printLog(it.message)
                 }
             }

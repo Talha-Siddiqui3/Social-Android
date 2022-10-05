@@ -3,16 +3,23 @@ package com.social.social.misc
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.os.Build
 class MyApplication : Application() {
+
+
 
     override fun onCreate() {
         super.onCreate()
 //        FirebaseApp.initializeApp(applicationContext)
 //        VolleyDownloadClassSync.initializeMyVolleyDownloadClass(this)
         createNotificationChannel()
+        MyApplication.applicationContext = applicationContext as Application
     }
 
+    companion object {
+        lateinit var applicationContext:Application
+    }
 
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

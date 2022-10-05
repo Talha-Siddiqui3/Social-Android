@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.social.social">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".misc.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,19 +18,29 @@
         android:theme="@style/Theme.Social"
         tools:targetApi="32">
         <activity
-            android:name=".activities.AuthenticationVerifyActivity"
-            android:exported="false"
-            android:windowSoftInputMode="stateVisible"/>
+            android:name=".activities.ConversationsActivity"
+            android:exported="false" />
         <activity
-            android:name=".activities.AuthenticationActivity"
-            android:exported="true"
-            android:windowSoftInputMode="stateVisible">
+            android:name=".activities.UserInfoActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".activities.SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.AuthenticationVerifyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".activities.AuthenticationActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible" />
     </application>
 
 </manifest>

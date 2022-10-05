@@ -9,7 +9,9 @@ import com.social.social.dataObjects.FieldObject
 import com.social.social.helper.DataValidator
 import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
+import com.social.social.models.AuthenticationVerifyResponseModel
 import com.social.social.repositoriesInterfaces.AuthenticationVerifyRepositoryInterface
+import com.social.social.services.AuthService
 import kotlinx.coroutines.launch
 
 class AuthenticationVerifyViewModel(private val authenticationVerifyRepository: AuthenticationVerifyRepositoryInterface) :
@@ -23,20 +25,22 @@ class AuthenticationVerifyViewModel(private val authenticationVerifyRepository: 
         return validationLiveData
     }
 
-    private val onServerResponseLiveData = MutableLiveData<Resource<String>>()
-    private val onResendCodeServerResponseLiveData = MutableLiveData<Resource<String>>()
+    private val onServerResponseLiveData = MutableLiveData<Resource<AuthenticationVerifyResponseModel?>>()
 
-    fun getOnServerResponseLiveData(): LiveData<Resource<String>> {
+    fun getOnServerResponseLiveData(): LiveData<Resource<AuthenticationVerifyResponseModel?>> {
         return onServerResponseLiveData
     }
 
 
-    fun sendVerifyOtpRequest(phoneNumber: String) {
+    fun sendVerifyOtpRequest(phoneNumber: String, otpCode:String) {
         onServerResponseLiveData.value = Resource.Loading()
 
         this.viewModelScope.launch {
-            onServerResponseLiveData.value =
-                authenticationVerifyRepository.sendLoginRequest(phoneNumber)
+            val verifyCodeResponse = authenticationVerifyRepository.verifyCode(phoneNumber, otpCode)
+            verifyCodeResponse?.data?.accessToken?.let{
+                AuthService.storeAccessToken(it)
+            }
+            onServerResponseLiveData.value = verifyCodeResponse
         }
     }
 

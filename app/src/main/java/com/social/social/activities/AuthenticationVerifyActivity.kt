@@ -14,12 +14,12 @@ import com.social.social.helper.ResourceValidation
 import com.social.social.misc.ActivityIntentConstants
 import com.social.social.misc.MyBaseClass
 import com.social.social.showKeyboard
+import com.social.social.showToastShort
 import com.social.social.viewModels.AuthenticationVerifyViewModel
 import kotlinx.android.synthetic.main.activity_authentication_verify.*
-import kotlinx.android.synthetic.main.activity_authentication_verify.root
 
 enum class AuthenticationVerifyFields {
-    EditText1, EditText2, EditText3, EditText4, EditText5, EditText6
+    EditText1, EditText2, EditText3, EditText4
 }
 
 class AuthenticationVerifyActivity : MyBaseClass(), View.OnClickListener {
@@ -56,7 +56,7 @@ class AuthenticationVerifyActivity : MyBaseClass(), View.OnClickListener {
             when (it) {
                 is Resource.Success -> {
                     hideLoading()
-
+                    "Logged in".showToastShort(this)
                 }
                 is Resource.Loading -> {
                     showLoading()
@@ -73,7 +73,7 @@ class AuthenticationVerifyActivity : MyBaseClass(), View.OnClickListener {
     private fun addOnValidationCompleteObserver() {
         viewModel.getValidationLiveData().observe(this) {
             if (it is ResourceValidation.Success) {
-                viewModel.sendVerifyOtpRequest(phoneNumber ?: "")
+                viewModel.sendVerifyOtpRequest(phoneNumber ?: "", getOtpCode())
             } else {
                 // validation failed
                 for (fieldObject in it.data) {
@@ -152,6 +152,13 @@ class AuthenticationVerifyActivity : MyBaseClass(), View.OnClickListener {
             )
         )
         return allFieldObjects
+    }
+
+    private fun getOtpCode(): String {
+        return listEditTexts[0].text.toString().trim() +
+                listEditTexts[1].text[1].toString().trim() +
+                listEditTexts[2].text[1].toString().trim() +
+                listEditTexts[3].text[1].toString().trim()
     }
 
     override fun onClick(view: View?) {

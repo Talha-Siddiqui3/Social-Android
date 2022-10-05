@@ -4,49 +4,50 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.social.social.activities.AuthenticationFields
+import com.social.social.activities.UserInformationFields
 import com.social.social.dataObjects.FieldObject
 import com.social.social.helper.DataValidator
 import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
-import com.social.social.models.AuthenticationResponseModel
-import com.social.social.repositoriesInterfaces.AuthenticationRepositoryInterface
+import com.social.social.models.UserInformationDataModel
+import com.social.social.models.UserInformationResponseModel
+import com.social.social.repositoriesInterfaces.UserInfoRepositoryInterface
 import kotlinx.coroutines.launch
 
-class AuthenticationViewModel(private val authenticationRepository: AuthenticationRepositoryInterface) :
+class UserInfoViewModel(private val userInfoRepository: UserInfoRepositoryInterface) :
     ViewModel() {
 
     private val validationLiveData =
-        MutableLiveData<ResourceValidation<ArrayList<FieldObject<AuthenticationFields>>>>()
+        MutableLiveData<ResourceValidation<ArrayList<FieldObject<UserInformationFields>>>>()
 
-    private val dataValidator = DataValidator<AuthenticationFields>()
-    private val onServerResponseLiveData = MutableLiveData<Resource<AuthenticationResponseModel?>>()
+    private val dataValidator = DataValidator<UserInformationFields>()
+    private val onServerResponseLiveData = MutableLiveData<Resource<UserInformationResponseModel?>>()
 
 
-    fun getOnServerResponseLiveData(): LiveData<Resource<AuthenticationResponseModel?>> {
+    fun getOnServerResponseLiveData(): LiveData<Resource<UserInformationResponseModel?>> {
         return onServerResponseLiveData
     }
 
-    fun getValidationLiveData(): LiveData<ResourceValidation<ArrayList<FieldObject<AuthenticationFields>>>> {
+    fun getValidationLiveData(): LiveData<ResourceValidation<ArrayList<FieldObject<UserInformationFields>>>> {
         return validationLiveData
     }
 
 
-    fun loginUsingPhone(phoneNumber: String) {
+    fun saveUserInformation(userInformationDataModel: UserInformationDataModel) {
         onServerResponseLiveData.value = Resource.Loading()
 
         this.viewModelScope.launch {
-            onServerResponseLiveData.value = authenticationRepository.loginUsingPhone(phoneNumber)
+            onServerResponseLiveData.value = userInfoRepository.createUpdateUser(userInformationDataModel)
         }
     }
 
 
-    fun funValidateAllFields(allFieldObjects: ArrayList<FieldObject<AuthenticationFields>>) {
+    fun validateAllFields(allFieldObjects: ArrayList<FieldObject<UserInformationFields>>) {
         var allFieldsValid = true
         for (currentFieldObject in allFieldObjects) {
             when (currentFieldObject.fieldEnum) {
-                AuthenticationFields.PhoneNumber -> {
-                    dataValidator.isValidMobileNumber(currentFieldObject)
+                UserInformationFields.FirstName -> {
+                    dataValidator.isValidName(currentFieldObject)
                 }
             }
             //if any field becomes invalid we change allFieldsValid variable to false permanently
