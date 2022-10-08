@@ -11,8 +11,10 @@ import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
 import com.social.social.models.UserInformationDataModel
 import com.social.social.models.UserInformationResponseModel
+import com.social.social.printLog
 import com.social.social.repositoriesInterfaces.UserInfoRepositoryInterface
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 
 class UserInfoViewModel(private val userInfoRepository: UserInfoRepositoryInterface) :
     ViewModel() {
@@ -33,11 +35,12 @@ class UserInfoViewModel(private val userInfoRepository: UserInfoRepositoryInterf
     }
 
 
-    fun saveUserInformation(userInformationDataModel: UserInformationDataModel) {
+    fun saveUserInformation(userInformationDataModel: UserInformationDataModel, profilePictureFile: MultipartBody.Part?) {
         onServerResponseLiveData.value = Resource.Loading()
 
         this.viewModelScope.launch {
-            onServerResponseLiveData.value = userInfoRepository.createUpdateUser(userInformationDataModel)
+            "userInformationDataModel viewmodel".printLog(userInformationDataModel)
+            onServerResponseLiveData.value = userInfoRepository.updateUser(userInformationDataModel, profilePictureFile)
         }
     }
 

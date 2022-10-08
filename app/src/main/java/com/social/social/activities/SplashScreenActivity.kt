@@ -19,7 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        val authenticated = AuthService.getAccessToken() != null
+        val authenticated = AuthService.getAccessToken() != null && AuthService.getUserID() != null
 
         val userInfoFilled = this.getSharedPrefBoolean("userInfoFilled")
 

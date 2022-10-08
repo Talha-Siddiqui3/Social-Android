@@ -18,7 +18,9 @@ class AuthenticationVerifyRepository(private val retrofitService: RetrofitServic
             val response =
                 retrofitService.verify(mapOf("phoneNumber" to phoneNumber, "otpCode" to code))
             "response-verifyCode".printLog(response.toString())
+            "response-verifyCode".printLog(response.body()?.toString())
             "response-verifyCode".printLog(response.body()?.accessToken)
+            "response-verifyCode".printLog(response.body()?.userModel.toString())
             if (response.body() != null && response.body()?.success == true) {
                 return Resource.Success(response.body())
             }

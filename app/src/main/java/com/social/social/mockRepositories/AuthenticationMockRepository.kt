@@ -8,6 +8,6 @@ import kotlinx.coroutines.delay
 class AuthenticationMockRepository : AuthenticationRepositoryInterface {
     override suspend fun loginUsingPhone(phoneNumber: String): Resource<AuthenticationResponseModel?> {
         delay(5000)
-        return Resource.Success(AuthenticationResponseModel(200, null, true, null))
+        return Resource.Success(AuthenticationResponseModel(null, true, null))
     }
 }

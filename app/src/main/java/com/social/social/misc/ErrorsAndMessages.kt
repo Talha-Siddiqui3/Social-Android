@@ -2,10 +2,7 @@ package com.social.social.misc
 
 object ErrorsAndMessages {
     const val noEmailError="Please enter an email address!"  // Don't need it for now, but we might use it later
-    const val noPasswordError = "Please enter password!"
     const val noNameError = "Please enter your name!"
-    const val noLocationError = "Please enter location!"
-    const val locationUnknownError="Unfortunately we couldn't get your location, please try again"
     const val incorrectCredentialsError = "It seems like you have entered an invalid email or password. Please try again."
 
     const val successfulSignUp= "Successfully signed up"
@@ -35,4 +32,8 @@ object ErrorsAndMessages {
     const val dataIncomplete = "Please fill in all the required fields."
 
     const val invalidEmail = "Please enter a valid email address."
+
+    const val imagePickPermissionsRequiredError = "We are sorry but these permissions are required for choosing profile image"
+
+    const val imagePickPermissionsRequiredMessage = "Storage and Camera permissions are required to choose an image"
 }

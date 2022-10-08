@@ -1,9 +1,7 @@
 package com.social.social.models
 
-import okhttp3.MultipartBody
-
-class UserInformationDataModel(
-    val firstName: String,
-    val lastName: String?,
-    val image: MultipartBody.Part?
-)
+class UserInformationDataModel {
+    var id: String? = null
+    var firstName: String? = null
+    var lastName: String? = null
+}

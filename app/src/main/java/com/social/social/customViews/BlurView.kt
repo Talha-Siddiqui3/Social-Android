@@ -41,6 +41,7 @@ class BlurView : RelativeLayout {
     private fun init(color: Int?, dismissable: Boolean) {
         View.inflate(context, R.layout.blur_view_layout, this)
         elevation = 50f
+        //translationZ = 50f
         setBackgroundColor(color!!)
         background.alpha = 214
         isFocusable = true

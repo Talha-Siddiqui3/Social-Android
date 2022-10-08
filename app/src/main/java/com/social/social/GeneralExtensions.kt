@@ -11,6 +11,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import android.widget.Toast
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 fun View.makeVisible() {
     this.visibility = View.VISIBLE
@@ -123,5 +126,8 @@ fun Application.setSharedPrefString(key: String, value: String) {
     editor?.apply()
 }
 
+fun createPartFromString(stringData: String?): RequestBody? {
+    return stringData?.toRequestBody("text/plain".toMediaTypeOrNull())
+}
 
 

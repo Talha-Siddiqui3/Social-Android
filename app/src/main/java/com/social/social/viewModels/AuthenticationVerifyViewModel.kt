@@ -10,6 +10,8 @@ import com.social.social.helper.DataValidator
 import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
 import com.social.social.models.AuthenticationVerifyResponseModel
+import com.social.social.models.UserModel
+import com.social.social.models.UserObject
 import com.social.social.repositoriesInterfaces.AuthenticationVerifyRepositoryInterface
 import com.social.social.services.AuthService
 import kotlinx.coroutines.launch
@@ -25,20 +27,30 @@ class AuthenticationVerifyViewModel(private val authenticationVerifyRepository: 
         return validationLiveData
     }
 
-    private val onServerResponseLiveData = MutableLiveData<Resource<AuthenticationVerifyResponseModel?>>()
+    private val onServerResponseLiveData =
+        MutableLiveData<Resource<AuthenticationVerifyResponseModel?>>()
 
     fun getOnServerResponseLiveData(): LiveData<Resource<AuthenticationVerifyResponseModel?>> {
         return onServerResponseLiveData
     }
 
 
-    fun sendVerifyOtpRequest(phoneNumber: String, otpCode:String) {
+    fun sendVerifyOtpRequest(phoneNumber: String, otpCode: String) {
         onServerResponseLiveData.value = Resource.Loading()
 
         this.viewModelScope.launch {
             val verifyCodeResponse = authenticationVerifyRepository.verifyCode(phoneNumber, otpCode)
-            verifyCodeResponse?.data?.accessToken?.let{
-                AuthService.storeAccessToken(it)
+            var validResponse = true
+            verifyCodeResponse.data?.accessToken?.let { AuthService.storeAccessToken(it) }
+                ?: run { validResponse = false }
+            verifyCodeResponse.data?.userModel?.id?.let {
+                AuthService.storeUserID(it); UserObject.init(
+                verifyCodeResponse.data.userModel
+            )
+            } ?: run { validResponse = false }
+            if (!validResponse) {
+                onServerResponseLiveData.value = Resource.Error(null, null)
+                return@launch
             }
             onServerResponseLiveData.value = verifyCodeResponse
         }

@@ -1,5 +1,6 @@
 package com.social.social.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -52,19 +53,21 @@ class AuthenticationVerifyActivity : MyBaseClass(), View.OnClickListener {
     }
 
     private fun addOnServerResponseObserver() {
-        viewModel.getOnServerResponseLiveData().observe(this) {
+        viewModel.getOnServerResponseLiveData().observe(this) { it ->
             when (it) {
                 is Resource.Success -> {
                     hideLoading()
                     "Logged in".showToastShort(this)
+                    startActivity(Intent(this, UserInfoActivity::class.java))
                 }
                 is Resource.Loading -> {
                     showLoading()
                 }
                 is Resource.Error -> {
                     hideLoading()
-                    showCustomError(it.message!!)
-                    Log.e("error", it.message)
+                    it.message?.let { message -> showCustomError(message) }
+                        ?: run { showUnknownError() }
+                    Log.e("error", it.message ?: "")
                 }
             }
         }
