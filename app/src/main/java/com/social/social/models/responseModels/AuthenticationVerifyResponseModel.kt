@@ -1,7 +1,7 @@
-package com.social.social.models
+package com.social.social.models.responseModels
 
 import com.google.gson.annotations.SerializedName
-import com.social.social.models.responseModels.BaseServerResponseModel
+import com.social.social.models.UserModel
 
 class AuthenticationVerifyResponseModel(
     override val message: String?,

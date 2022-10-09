@@ -19,4 +19,6 @@
     <string name="social">Social</string>
     <string name="first_name_required">First Name (Required)</string>
     <string name="last_name_optional">Last Name (Optional)</string>
+    <string name="chats">Chats</string>
+    <string name="contacts">Contacts</string>
 </resources>

@@ -36,4 +36,6 @@ object ErrorsAndMessages {
     const val imagePickPermissionsRequiredError = "We are sorry but these permissions are required for choosing profile image"
 
     const val imagePickPermissionsRequiredMessage = "Storage and Camera permissions are required to choose an image"
+
+    const val contactPermissionRequiredMessage = "We need contact permissions to show all your friends that are on Social"
 }

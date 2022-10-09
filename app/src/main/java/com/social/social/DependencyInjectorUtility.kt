@@ -2,19 +2,12 @@ package com.social.social
 
 
 import com.social.social.misc.AppSettings
-import com.social.social.mockRepositories.AuthenticationMockRepository
-import com.social.social.mockRepositories.AuthenticationVerifyMockRepository
-import com.social.social.mockRepositories.UserInfoMockRepository
-import com.social.social.repositories.AuthenticationRepository
-import com.social.social.repositories.AuthenticationVerifyRepository
-import com.social.social.repositories.UserInfoRepository
-import com.social.social.repositoriesInterfaces.AuthenticationRepositoryInterface
-import com.social.social.repositoriesInterfaces.AuthenticationVerifyRepositoryInterface
-import com.social.social.repositoriesInterfaces.UserInfoRepositoryInterface
+import com.social.social.mockRepositories.*
+import com.social.social.repositories.*
+import com.social.social.repositoriesInterfaces.*
 import com.social.social.services.RetrofitService
-import com.social.social.viewModelFactoryClasses.AuthenticationVerifyViewModelFactoryClass
-import com.social.social.viewModelFactoryClasses.AuthenticationViewModelFactoryClass
-import com.social.social.viewModelFactoryClasses.UserInfoViewModelFactoryClass
+import com.social.social.viewModelFactoryClasses.*
+import com.social.social.viewModels.ConversationsViewModel
 
 object DependencyInjectorUtility {
     fun getAuthenticationViewModelFactory(): AuthenticationViewModelFactoryClass {
@@ -35,5 +28,16 @@ object DependencyInjectorUtility {
         return UserInfoViewModelFactoryClass(userInfoRepository)
     }
 
+    fun getConversationsViewModelFactory(): ConversationViewModelFactoryClass {
+        val conversationsRepository: ConversationsRepositoryInterface =
+            if (AppSettings.isLiveMode) ConversationsRepository(RetrofitService.getInstance()) else ConversationsMockRepository(RetrofitService.getInstance())
+        return ConversationViewModelFactoryClass(conversationsRepository)
+    }
+
+    fun getUserContactsViewModelFactory(): UserContactsViewModelFactoryClass {
+        val userContactsRepository: UserContactsRepositoryInterface =
+            if (AppSettings.isLiveMode) UserContactsRepository(RetrofitService.getInstance()) else UserContactsMockRepository(RetrofitService.getInstance())
+        return UserContactsViewModelFactoryClass(userContactsRepository)
+    }
 
 }

@@ -53,12 +53,14 @@ fun Activity.printLog(text: Any?) {
 
 fun View.showKeyboard() {
     this.requestFocus()
-    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val inputMethodManager =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
 
 fun View.hideKeyboard() {
-    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val inputMethodManager =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
@@ -96,6 +98,19 @@ fun Activity.setSharedPrefBoolean(key: String, value: Boolean) {
     editor?.apply()
 }
 
+fun Application.getSharedPrefBoolean(key: String): Boolean {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    return preferences?.getBoolean(key, false) ?: false
+}
+
+fun Application.setSharedPrefBoolean(key: String, value: Boolean) {
+    val preferences: SharedPreferences? =
+        applicationContext?.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor? = preferences?.edit()
+    editor?.putBoolean(key, value)
+    editor?.apply()
+}
 
 
 fun Activity.getSharedPrefString(key: String): String? {
@@ -111,6 +126,7 @@ fun Activity.setSharedPrefString(key: String, value: String) {
     editor?.putString(key, value)
     editor?.apply()
 }
+
 
 fun Application.getSharedPrefString(key: String): String? {
     val preferences: SharedPreferences? =

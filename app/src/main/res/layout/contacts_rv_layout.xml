@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_14sdp"
+    android:clickable="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingHorizontal="@dimen/_3sdp"
+    android:paddingTop="@dimen/_4sdp"
+    android:paddingBottom="@dimen/_4sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/chatHeadCardView"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/contactNumberTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/chatHeadImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorTertiary"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/imagePlaceHolderNameTextView"
+            style="@style/primaryTextMediumLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="RB" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/contactNameTextView"
+        style="@style/primaryTextMediumMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:text="Richard Brown"
+        app:layout_constraintStart_toEndOf="@+id/chatHeadCardView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contactNumberTextView"
+        style="@style/primaryTextRegularSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:text="+1403922122"
+        android:textColor="#ADB5BD"
+        app:layout_constraintStart_toEndOf="@+id/chatHeadCardView"
+        app:layout_constraintTop_toBottomOf="@id/contactNameTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ConversationsActivity">
-
+    tools:context=".activities.UserContactsActivity">
 
     <TextView
-        android:id="@+id/ChatsTextView"
+        android:id="@+id/ContactsTextView"
         style="@style/primaryTextRegularLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:text="@string/chats"
+        android:text="@string/contacts"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,13 +22,13 @@
     <ImageView
         android:id="@+id/newChatImageView"
         android:layout_width="wrap_content"
-        android:foreground="?attr/selectableItemBackground"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_17sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:src="@drawable/new_chat_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
@@ -40,16 +39,15 @@
         android:paddingStart="-8dp"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="@+id/newChatImageView"
-        app:layout_constraintStart_toStartOf="@+id/ChatsTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ChatsTextView"
+        app:layout_constraintStart_toStartOf="@+id/ContactsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ContactsTextView"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Search"
         app:searchHintIcon="@null"
         app:searchIcon="@drawable/search_icon" />
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/conversationRv"
+        android:id="@+id/userContactsRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20sdp"
@@ -58,6 +56,5 @@
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

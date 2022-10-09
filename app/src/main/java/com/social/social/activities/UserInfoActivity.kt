@@ -5,27 +5,27 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.social.social.*
+import com.social.social.DependencyInjectorUtility
+import com.social.social.R
 import com.social.social.dataObjects.FieldObject
 import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
-import com.social.social.misc.ActivityIntentConstants
 import com.social.social.misc.ErrorsAndMessages
 import com.social.social.misc.MyBaseClass
 import com.social.social.models.UserInformationDataModel
 import com.social.social.models.UserObject
+import com.social.social.scrollToBottom
+import com.social.social.showToastLong
 import com.social.social.viewModels.UserInfoViewModel
 import kotlinx.android.synthetic.main.activity_user_info.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -49,7 +49,8 @@ class UserInfoActivity : MyBaseClass(), View.OnClickListener, EasyPermissions.Pe
 
     private val userInfoFieldsToViewsMap = HashMap<UserInformationFields, EditText>()
     private lateinit var userInformationDataModel: UserInformationDataModel
-    private var profilePictureFile:MultipartBody.Part? = null
+    private var profilePictureFile: MultipartBody.Part? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,14 +62,16 @@ class UserInfoActivity : MyBaseClass(), View.OnClickListener, EasyPermissions.Pe
         initUserInfoFieldsMap()
         addOnValidationCompleteObserver()
         addOnServerResponseObserver()
+
     }
+
 
     private fun addOnServerResponseObserver() {
         viewModel.getOnServerResponseLiveData().observe(this) {
             when (it) {
                 is Resource.Success -> {
                     hideLoading()
-                    //startActivity(Intent(this, ConversationsActivity::class.java))
+                    startActivity(Intent(this, ConversationsActivity::class.java))
                 }
                 is Resource.Loading -> {
                     showLoading()

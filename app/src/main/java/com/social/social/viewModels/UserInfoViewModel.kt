@@ -9,10 +9,13 @@ import com.social.social.dataObjects.FieldObject
 import com.social.social.helper.DataValidator
 import com.social.social.helper.Resource
 import com.social.social.helper.ResourceValidation
+import com.social.social.misc.MyApplication
 import com.social.social.models.UserInformationDataModel
 import com.social.social.models.UserInformationResponseModel
 import com.social.social.printLog
 import com.social.social.repositoriesInterfaces.UserInfoRepositoryInterface
+import com.social.social.setSharedPrefBoolean
+import com.social.social.setSharedPrefString
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
@@ -39,7 +42,10 @@ class UserInfoViewModel(private val userInfoRepository: UserInfoRepositoryInterf
         onServerResponseLiveData.value = Resource.Loading()
 
         this.viewModelScope.launch {
-            "userInformationDataModel viewmodel".printLog(userInformationDataModel)
+            val response = userInfoRepository.updateUser(userInformationDataModel, profilePictureFile)
+            if(response.data?.success == true){
+                MyApplication.applicationContext.setSharedPrefBoolean("userInfoFilled", true)
+            }
             onServerResponseLiveData.value = userInfoRepository.updateUser(userInformationDataModel, profilePictureFile)
         }
     }

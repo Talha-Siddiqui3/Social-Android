@@ -1,6 +1,4 @@
-package com.social.social.models
-
-import com.social.social.models.responseModels.BaseServerResponseModel
+package com.social.social.models.responseModels
 
 class AuthenticationResponseModel(
     override val message: String?,
